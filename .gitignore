@@ -1,0 +1,11 @@
+*.log
+*.sw?
+.DS_Store
+bower_components
+build
+dist
+coverage
+lib
+node_modules
+ossutil_output
+temp
