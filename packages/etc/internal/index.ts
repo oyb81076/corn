@@ -1,1 +1,9 @@
-export const MYSQL_URL = "mysql://127.0.0.1/cron"
+export const MYSQL_HOST = "127.0.0.1"
+export const MYSQL_PORT = 3306;
+export const MYSQL_USER = "root";
+export const MYSQL_PASSWORD = "sa";
+export const MYSQL_DATABASE = "corn";
+export const MYSQL_CONNECTION_LIMIT = 10;
+export const API_PORT = 13030;
+export const JWT_SECRET = "jwt_secret";
+export const APP_KEYS = ["app_keys"]

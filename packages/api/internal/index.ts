@@ -1,3 +1,2 @@
-import Koa from "koa";
-const app = new Koa();
-export default app;
+import { startup } from "./server";
+startup();
