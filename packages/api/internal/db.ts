@@ -1,8 +1,10 @@
 import { MYSQL_CONNECTION_LIMIT, MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_PORT, MYSQL_USER } from "@corn/etc";
-import { createPool, Pool, PoolConnection, QueryFunction } from "mysql";
+import { once } from "lodash";
+import { createPool, Pool, PoolConnection } from "mysql";
 export let db: Pool;
-export async function connect() {
-  db = createPool({
+const callbacks: Array<() => void> = [];
+const connectOnce = once(() => {
+  const pool = createPool({
     bigNumberStrings: true,
     charset: "utf8bm4",
     connectionLimit: MYSQL_CONNECTION_LIMIT,
@@ -12,7 +14,20 @@ export async function connect() {
     port: MYSQL_PORT,
     user: MYSQL_USER,
   });
-  return;
+  db.on("connection", once(() => {
+    db = pool;
+  }));
+  db.on("error", () => {
+    process.exit(2);
+  });
+});
+
+export function connect() {
+  if (db) { return Promise.resolve(); }
+  return new Promise((r) => {
+    callbacks.push(r);
+    connectOnce();
+  });
 }
 export function select<T>(sql: string, values: any, connection: PoolConnection | Pool = db) {
   return new Promise<T[]>((resolve, reject) => {
