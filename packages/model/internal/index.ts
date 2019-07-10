@@ -1,1 +1,1 @@
-export { UserRole } from "./vars/UserRole";
+export { UserRole, IUser } from "./User";
