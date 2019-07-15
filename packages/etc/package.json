@@ -4,6 +4,6 @@
   "main": "internal/index.ts",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^3.5.2"
+    "typescript": "^3.5.3"
   }
 }
