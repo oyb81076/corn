@@ -1,6 +1,6 @@
-import { MYSQL_CONNECTION_LIMIT, MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_PORT, MYSQL_USER } from "@corn/etc";
 import { once } from "lodash";
 import { createPool, Pool, PoolConnection } from "mysql";
+import { MYSQL_CONNECTION_LIMIT, MYSQL_DATABASE, MYSQL_HOST, MYSQL_PASSWORD, MYSQL_PORT, MYSQL_USER } from "shared/etc";
 export let db: Pool;
 const callbacks: Array<() => void> = [];
 const connectOnce = once(() => {
@@ -39,7 +39,19 @@ export function select<T>(sql: string, values: any, connection: PoolConnection |
 }
 
 export function selectOne<T>(sql: string, values: any, connection: PoolConnection | Pool = db): Promise<T | null> {
-  return new Promise<T | null>((r) => r(null));
+  return new Promise<T | null>((resolve, reject) => {
+    connection.query({ sql, values }, (err, results) => {
+      if (err) {
+        reject(err);
+      } else if (results.length === 1) {
+        resolve(results[0]);
+      } else if (results.length === 0) {
+        resolve(null);
+      } else {
+        reject(new Error("select one return more then on result"));
+      }
+    });
+  });
 }
 
 export function insert(sql: string, values: any, connection: PoolConnection | Pool = db): Promise<number> {

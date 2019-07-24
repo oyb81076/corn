@@ -1,5 +1,5 @@
-import { API_PORT } from "@corn/etc";
 import { createServer } from "http";
+import { API_PORT } from "shared/etc";
 import app from "./app";
 import { connect } from "./db";
 import { getFileLogger } from "./logger";

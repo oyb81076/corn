@@ -1,9 +1,9 @@
 // 放弃cookie, 使用 auth字段
-import { JWT_SECRET as secret } from "@corn/etc";
-import { UserRole } from "@corn/model";
 import * as jwt from "jsonwebtoken";
 import * as koa from "koa";
 import { Omit } from "lodash";
+import { JWT_SECRET as secret } from "shared/etc";
+import { UserRole } from "shared/models";
 declare module "koa" {
   // tslint:disable-next-line:interface-name
   interface Context {

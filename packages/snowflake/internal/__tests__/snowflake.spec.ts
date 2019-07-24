@@ -1,4 +1,4 @@
-import snowflake from "../internal/snowflake";
+import snowflake from "../snowflake";
 it("create 5000", async () => {
   const nextID = snowflake({ dataCenterId: 1, workerId: 1 });
   const count = 1;

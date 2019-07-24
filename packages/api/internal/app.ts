@@ -1,8 +1,8 @@
-import { APP_KEYS } from "@corn/etc";
 import Koa from "koa";
 import koaBody from "koa-body";
 import koaJson from "koa-json";
 import koaLogger from "koa-logger";
+import { APP_KEYS } from "shared/etc";
 import { getFileLogger } from "./logger";
 import router from "./route";
 const logger = getFileLogger(__filename);

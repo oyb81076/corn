@@ -1,9 +1,0 @@
-{
-  "name": "@corn/etc",
-  "version": "1.0.0",
-  "main": "internal/index.ts",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^3.5.3"
-  }
-}

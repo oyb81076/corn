@@ -1,11 +1,9 @@
 *.log
 *.sw?
 .DS_Store
-bower_components
-build
-dist
-coverage
-lib
+/build
+/dist
+/coverage
 node_modules
 ossutil_output
 temp

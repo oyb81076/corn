@@ -1,9 +1,6 @@
 {
-  "name": "@corn/accounting",
+  "name": "accounting",
   "version": "1.0.0",
   "main": "internal/index.js",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^3.5.3"
-  }
+  "license": "MIT"
 }
