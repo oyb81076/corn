@@ -94,7 +94,7 @@ function makeNextID(
 
 async function sleep(): Promise<number> {
   return new Promise((r) => {
-    setTimeout(() => r(Date.now()), 1);
+    process.nextTick(() => r(Date.now()));
   });
 }
 
